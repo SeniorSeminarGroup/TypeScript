@@ -25429,7 +25429,7 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
             case SyntaxKind.SetAccessor:
             case SyntaxKind.FunctionExpression:
             case SyntaxKind.ArrowFunction:
-                if (noImplicitAny && strictNullChecks && !(declaration as NamedDeclaration).name) {
+                if (noImplicitAny && !(declaration as NamedDeclaration).name) {
                     if (wideningKind === WideningKind.GeneratorYield) {
                         error(declaration, Diagnostics.Generator_implicitly_has_yield_type_0_Consider_supplying_a_return_type_annotation, typeAsString);
                     }
@@ -25438,7 +25438,7 @@ export function createTypeChecker(host: TypeCheckerHost): TypeChecker {
                     }
                     return;
                 }
-                diagnostic = !noImplicitAny && strictNullChecks ? Diagnostics._0_implicitly_has_an_1_return_type_but_a_better_type_may_be_inferred_from_usage :
+                diagnostic = !noImplicitAny ? Diagnostics._0_implicitly_has_an_1_return_type_but_a_better_type_may_be_inferred_from_usage :
                     wideningKind === WideningKind.GeneratorYield ? Diagnostics._0_which_lacks_return_type_annotation_implicitly_has_an_1_yield_type :
                     Diagnostics._0_which_lacks_return_type_annotation_implicitly_has_an_1_return_type;
                 break;
